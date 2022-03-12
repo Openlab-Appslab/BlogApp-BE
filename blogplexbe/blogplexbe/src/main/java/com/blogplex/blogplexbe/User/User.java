@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.persistence.Column;
-import java.util.Collection;
+//import java.util.Collection;
 import static javax.persistence.GenerationType.SEQUENCE;
 @Getter
 @Setter
