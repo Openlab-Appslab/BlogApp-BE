@@ -1,0 +1,13 @@
+<form class="wrapper-center" [formGroup]="loginGroup" (ngSubmit)="login()">
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" required>
+  </mat-form-field>
+
+  <button mat-stroked-button type="submit" [disabled]="!loginGroup.valid">Login</button>
+</form>
