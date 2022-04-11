@@ -19,7 +19,7 @@ public class UserController {
     public void getUser() {
 
     }
-@PostMapping(path = "/nologon")
+@PostMapping(path = "/noAuth/register")
     public User addNewUser (@RequestBody User user) {
         return userService.addUser(user);}
 }
