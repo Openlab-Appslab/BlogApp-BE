@@ -8,4 +8,14 @@ public class BlogResponse {
         this.name = blog.getName();
         this.content = blog.getContent();
     }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getContent()
+    {
+        return content;
+    }
 }
