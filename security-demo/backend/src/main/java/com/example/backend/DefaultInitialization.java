@@ -24,8 +24,7 @@ public class DefaultInitialization implements CommandLineRunner {
     }
 
     private void createAndPersistUser(String username, String password, String email) {
-        String encodedPassword = this.passwordEncoder.encode(password);
-        User user = new User(username, encodedPassword, email);
+        User user = new User(username, password, email);
         this.userService.addUser(user);
     }
 
