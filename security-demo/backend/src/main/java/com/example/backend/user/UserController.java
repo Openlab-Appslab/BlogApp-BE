@@ -1,5 +1,7 @@
 package com.example.backend.user;
 
+import com.example.backend.blog.Blog;
+import com.example.backend.blog.BlogService;
 import com.example.backend.user.dto.BasicInfoUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,15 +12,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 public class UserController {
 
     private final UserService userService;
+    private final BlogService blogService;
+
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, BlogService blogService) {
         this.userService = userService;
+        this.blogService = blogService;
     }
 
     @GetMapping("/user")
@@ -34,6 +40,11 @@ public class UserController {
         }else{
             throw new UsernameNotFoundException("Uzivatel nebol najdeny!");
         }
+    }
+
+    @GetMapping(path = "/noAuth/blogs")
+    public List<Blog> showBlogs(){
+        return blogService.getAllBlogs();
     }
 
 @PostMapping(path = "/noAuth/register")

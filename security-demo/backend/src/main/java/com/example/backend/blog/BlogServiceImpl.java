@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 public class BlogServiceImpl implements BlogService{
@@ -18,5 +19,10 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public Blog getBlog(String blogName) {
         return blogRepository.findById(blogName).orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    public List<Blog> getAllBlogs() {
+        return blogRepository.findAll();
     }
 }

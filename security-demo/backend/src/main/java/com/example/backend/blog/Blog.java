@@ -1,8 +1,8 @@
 package com.example.backend.blog;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.example.backend.user.User;
+
+import javax.persistence.*;
 
 @Entity
 public class Blog {
@@ -11,6 +11,9 @@ public class Blog {
 
     @Column(length = 8000)
     private String content;
+
+    @ManyToOne
+    private User user;
 
     public String getName() {
         return name;

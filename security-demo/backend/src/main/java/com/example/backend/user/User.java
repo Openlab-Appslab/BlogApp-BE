@@ -1,6 +1,9 @@
 package com.example.backend.user;
 
+import com.example.backend.blog.Blog;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -31,6 +34,8 @@ public class User {
     )
     private String email;
 
+    @OneToMany
+    private List<Blog> listOfBlog;
 
     public User() {
     }
