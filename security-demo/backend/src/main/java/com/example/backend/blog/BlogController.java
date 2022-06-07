@@ -25,4 +25,9 @@ public class BlogController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping(path = "/getAllBlogs")
+    public List<Blog> getAllBlogs(){
+        return blogService.getAllBlogs();
+    }
 }
