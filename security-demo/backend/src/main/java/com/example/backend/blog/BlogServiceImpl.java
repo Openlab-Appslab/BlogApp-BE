@@ -32,8 +32,16 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public List<Blog> getAllBlogs() {
-        return blogRepository.findAll();
+    public List<BlogBasicDTO> getAllBlogs(String email) {
+        List<Blog> blogList = new ArrayList<>(blogRepository.findAll());
+
+        List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();
+
+        blogList.forEach((e) ->{
+            blogBasicDTOList.add(convertBlogToDTO(e, email));
+        });
+
+        return blogBasicDTOList;
     }
 
     @Override
@@ -67,6 +75,7 @@ public class BlogServiceImpl implements BlogService{
                 email
         );
     }
+
 
     public List<BlogBasicDTO> getBlogsFromUser(String email){
         Optional<User> user = userRepository.findByEmail(email);
