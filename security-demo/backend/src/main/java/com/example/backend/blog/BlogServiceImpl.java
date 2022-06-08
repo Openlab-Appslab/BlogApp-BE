@@ -44,6 +44,22 @@ public class BlogServiceImpl implements BlogService{
         return blogBasicDTOList;
     }
 
+    public List<BlogBasicDTO> getBlogsFromUser(String email){
+        Optional<User> user = userRepository.findByEmail(email);
+
+        if(user.isPresent()) {
+            List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();
+
+            user.get().getListOfBlog().forEach((e) ->{
+                blogBasicDTOList.add(convertBlogToDTO(e, user.get().getEmail()));
+            });
+
+            return blogBasicDTOList;
+        }else {
+            throw new UserWasNotFound("User not found");
+        }
+    }
+
     @Override
     public void addNewBlog(CreationOfBlogDTO creationOfBlogDTO, String username) {
         Optional<User> user = userRepository.findByEmail(username);
@@ -66,21 +82,7 @@ public class BlogServiceImpl implements BlogService{
     }
 
 
-    public List<BlogBasicDTO> getBlogsFromUser(String email){
-        Optional<User> user = userRepository.findByEmail(email);
 
-        if(user.isPresent()) {
-            List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();
-
-            user.get().getListOfBlog().forEach((e) ->{
-                blogBasicDTOList.add(convertBlogToDTO(e, user.get().getEmail()));
-            });
-
-            return blogBasicDTOList;
-        }else {
-            throw new UserWasNotFound("User not found");
-        }
-    }
 
     public BlogBasicDTO convertBlogToDTO(Blog blog, String email){
         return new BlogBasicDTO(
