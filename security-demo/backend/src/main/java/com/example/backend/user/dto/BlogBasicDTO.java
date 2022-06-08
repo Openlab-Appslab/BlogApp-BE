@@ -1,20 +1,21 @@
 package com.example.backend.user.dto;
 
+public class BlogBasicDTO {
 
-public class CreationOfBlogDTO {
     private String name;
     private String content;
     private String author;
-    private String category;
     private String date;
+    private String category;
+    private String email;
 
-
-    public CreationOfBlogDTO(String name, String content, String author, String category, String date) {
+    public BlogBasicDTO(String name, String content, String author, String date, String category, String email) {
         this.name = name;
         this.content = content;
         this.author = author;
-        this.category = category;
         this.date = date;
+        this.category = category;
+        this.email = email;
     }
 
     public String getName() {
@@ -41,6 +42,14 @@ public class CreationOfBlogDTO {
         this.author = author;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -49,11 +58,11 @@ public class CreationOfBlogDTO {
         this.category = category;
     }
 
-    public String getDate() {
-        return date;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

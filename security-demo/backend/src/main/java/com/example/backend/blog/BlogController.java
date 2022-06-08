@@ -1,6 +1,7 @@
 package com.example.backend.blog;
 
 import com.example.backend.security.UserDetailsImpl;
+import com.example.backend.user.dto.BlogBasicDTO;
 import com.example.backend.user.dto.CreationOfBlogDTO;
 import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 
 @RestController
-@RequestMapping("/noAuth/blog")
 public class BlogController {
     private final BlogServiceImpl blogService;
 
@@ -37,9 +37,21 @@ public class BlogController {
         return blogService.getAllBlogs();
     }
 
-    @PostMapping(path = "/blogCreate")
-    public void addNewBlog(CreationOfBlogDTO creationOfBlogDTO, Authentication authentication){
+
+    @PostMapping(path = "/Auth/addPost")
+    public void testPost(Authentication authentication, @RequestBody CreationOfBlogDTO creationOfBlogDTO){
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
         blogService.addNewBlog(creationOfBlogDTO, userDetails.getUsername());
+    }
+
+    @GetMapping(path = "/noAuth/test1")
+    public String testSecurity1(){
+        return "Neprihlaseny";
+    }
+
+    @GetMapping(path = "/Auth/test2")
+    public String testSecurity2(){
+        return "Prihlaseny";
     }
 }

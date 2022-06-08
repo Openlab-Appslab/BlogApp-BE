@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
         //user.setId(0);
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        return this.repository.save(user);
+        return repository.save(user);
     }
 
     @Override

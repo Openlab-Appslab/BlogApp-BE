@@ -2,12 +2,15 @@ package com.example.backend.blog;
 
 import com.example.backend.user.User;
 import com.example.backend.user.UserRepository;
+import com.example.backend.user.dto.BlogBasicDTO;
 import com.example.backend.user.dto.CreationOfBlogDTO;
+import com.example.backend.user.exception.UserWasNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,16 +42,45 @@ public class BlogServiceImpl implements BlogService{
 
         if(user.isPresent()){
             Blog blog = new Blog(
-              creationOfBlogDTO.getName(),
+                    creationOfBlogDTO.getName(),
                     creationOfBlogDTO.getContent(),
                     creationOfBlogDTO.getAuthor(),
                     creationOfBlogDTO.getDate(),
-                    user.get()
+                    user.get(),
+                    creationOfBlogDTO.getCategory()
             );
-
+            user.get().getListOfBlog().add(blog);
             blogRepository.save(blog);
+            userRepository.save(user.get());
         }else{
             throw new UsernameNotFoundException("User was not found!");
+        }
+    }
+
+    public BlogBasicDTO convertBlogToDTO(Blog blog, String email){
+        return new BlogBasicDTO(
+                blog.getName(),
+                blog.getContent(),
+                blog.getAuthor(),
+                blog.getDate(),
+                blog.getCategory(),
+                email
+        );
+    }
+
+    public List<BlogBasicDTO> getBlogsFromUser(String email){
+        Optional<User> user = userRepository.findByEmail(email);
+
+        if(user.isPresent()) {
+            List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();
+
+            user.get().getListOfBlog().forEach((e) ->{
+                blogBasicDTOList.add(convertBlogToDTO(e, user.get().getEmail()));
+            });
+
+            return blogBasicDTOList;
+        }else {
+            throw new UserWasNotFound("User not found");
         }
     }
 }

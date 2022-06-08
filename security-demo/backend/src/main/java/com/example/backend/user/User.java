@@ -3,6 +3,7 @@ package com.example.backend.user;
 import com.example.backend.blog.Blog;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -44,6 +45,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.listOfBlog = new ArrayList<>();
 
     }
 
@@ -74,4 +76,12 @@ public class User {
     public String getEmail() { return email; }
 
     public void setEmail(String email) { this.email = email; }
+
+    public List<Blog> getListOfBlog() {
+        return listOfBlog;
+    }
+
+    public void setListOfBlog(List<Blog> listOfBlog) {
+        this.listOfBlog = listOfBlog;
+    }
 }

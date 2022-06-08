@@ -3,9 +3,11 @@ package com.example.backend.user;
 import com.example.backend.blog.Blog;
 import com.example.backend.blog.BlogService;
 import com.example.backend.user.dto.BasicInfoUserDTO;
+import com.example.backend.user.dto.BlogBasicDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsByNameServiceWrapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,7 +49,14 @@ public class UserController {
         return blogService.getAllBlogs();
     }
 
-@PostMapping(path = "/noAuth/register")
+    @PostMapping(path = "/noAuth/register")
     public User addNewUser (@RequestBody User user) {
         return userService.addUser(user);}
+
+    @GetMapping(path = "/Auth/userBlogs")
+    public List<BlogBasicDTO> showBlogsFromUser(Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        return blogService.getBlogsFromUser(userDetails.getUsername());
+    }
 }
