@@ -44,10 +44,6 @@ public class UserController {
         }
     }
 
-    @GetMapping(path = "/noAuth/blogs")
-    public List<Blog> showBlogs(){
-        return blogService.getAllBlogs();
-    }
 
     @PostMapping(path = "/noAuth/register")
     public User addNewUser (@RequestBody User user) {

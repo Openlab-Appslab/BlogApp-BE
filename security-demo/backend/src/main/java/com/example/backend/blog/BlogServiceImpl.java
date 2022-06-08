@@ -32,8 +32,32 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public List<Blog> getAllBlogs() {
-        return blogRepository.findAll();
+    public List<BlogBasicDTO> getAllBlogs(String email) {
+        List<Blog> blogList = new ArrayList<>(blogRepository.findAll());
+
+        List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();
+
+        blogList.forEach((e) ->{
+            blogBasicDTOList.add(convertBlogToDTO(e, email));
+        });
+
+        return blogBasicDTOList;
+    }
+
+    public List<BlogBasicDTO> getBlogsFromUser(String email){
+        Optional<User> user = userRepository.findByEmail(email);
+
+        if(user.isPresent()) {
+            List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();
+
+            user.get().getListOfBlog().forEach((e) ->{
+                blogBasicDTOList.add(convertBlogToDTO(e, user.get().getEmail()));
+            });
+
+            return blogBasicDTOList;
+        }else {
+            throw new UserWasNotFound("User not found");
+        }
     }
 
     @Override
@@ -57,6 +81,9 @@ public class BlogServiceImpl implements BlogService{
         }
     }
 
+
+
+
     public BlogBasicDTO convertBlogToDTO(Blog blog, String email){
         return new BlogBasicDTO(
                 blog.getName(),
@@ -66,21 +93,5 @@ public class BlogServiceImpl implements BlogService{
                 blog.getCategory(),
                 email
         );
-    }
-
-    public List<BlogBasicDTO> getBlogsFromUser(String email){
-        Optional<User> user = userRepository.findByEmail(email);
-
-        if(user.isPresent()) {
-            List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();
-
-            user.get().getListOfBlog().forEach((e) ->{
-                blogBasicDTOList.add(convertBlogToDTO(e, user.get().getEmail()));
-            });
-
-            return blogBasicDTOList;
-        }else {
-            throw new UserWasNotFound("User not found");
-        }
     }
 }
