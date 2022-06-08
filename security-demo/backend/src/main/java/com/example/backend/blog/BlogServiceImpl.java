@@ -65,17 +65,6 @@ public class BlogServiceImpl implements BlogService{
         }
     }
 
-    public BlogBasicDTO convertBlogToDTO(Blog blog, String email){
-        return new BlogBasicDTO(
-                blog.getName(),
-                blog.getContent(),
-                blog.getAuthor(),
-                blog.getDate(),
-                blog.getCategory(),
-                email
-        );
-    }
-
 
     public List<BlogBasicDTO> getBlogsFromUser(String email){
         Optional<User> user = userRepository.findByEmail(email);
@@ -91,5 +80,16 @@ public class BlogServiceImpl implements BlogService{
         }else {
             throw new UserWasNotFound("User not found");
         }
+    }
+
+    public BlogBasicDTO convertBlogToDTO(Blog blog, String email){
+        return new BlogBasicDTO(
+                blog.getName(),
+                blog.getContent(),
+                blog.getAuthor(),
+                blog.getDate(),
+                blog.getCategory(),
+                email
+        );
     }
 }
