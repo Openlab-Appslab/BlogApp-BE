@@ -21,7 +21,7 @@ public class BlogController {
         this.blogService = blogService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("blog/{id}")
     public ResponseEntity<BlogResponse> getBlog(@PathVariable("id") String blogName) {
         try {
             return new ResponseEntity<>(new BlogResponse(this.blogService.getBlog(blogName)), HttpStatus.OK);

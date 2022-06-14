@@ -10,7 +10,7 @@ public class Blog {
     @Id
     private String name;
 
-    @Column(length = 8000)
+    @Column(length = 80000)
     private String content;
 
     @Column(length = 100)

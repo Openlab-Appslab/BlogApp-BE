@@ -16,6 +16,7 @@ public class BlogBasicDTO {
         this.date = date;
         this.category = category;
         this.email = email;
+
     }
 
     public String getName() {
