@@ -34,6 +34,18 @@ public class User {
             unique = true
     )
     private String email;
+    @Column(
+            name = "address",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String address;
+    @Column(
+            name = "telephone",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String telephone;
 
     @OneToMany
     private List<Blog> listOfBlog;
@@ -46,7 +58,8 @@ public class User {
         this.password = password;
         this.email = email;
         this.listOfBlog = new ArrayList<>();
-
+        this.address = address;
+        this.telephone = telephone;
     }
 
     public long getId() {
@@ -84,4 +97,12 @@ public class User {
     public void setListOfBlog(List<Blog> listOfBlog) {
         this.listOfBlog = listOfBlog;
     }
+
+    public String getAddress() { return address;}
+
+    public void setAddress(String address) { this.address = address; }
+
+    public String getTelephone() {return telephone;}
+
+    public void setTelephone(String telephone) {this.telephone = telephone;}
 }
