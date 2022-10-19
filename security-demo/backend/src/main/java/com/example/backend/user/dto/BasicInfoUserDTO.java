@@ -6,15 +6,17 @@ public class BasicInfoUserDTO {
     private String email;
     private String address;
     private String telephone;
+    private String fullname;
 
     public BasicInfoUserDTO() {
     }
 
-    public BasicInfoUserDTO(String username, String email, String address, String telephone) {
+    public BasicInfoUserDTO(String username, String email, String address, String telephone, String fullname) {
         this.username = username;
         this.email = email;
         this.address = address;
         this.telephone = telephone;
+        this.fullname = fullname;
     }
 
     public String getUsername() {
@@ -40,4 +42,8 @@ public class BasicInfoUserDTO {
     public String getAddress() {    return address; }
 
     public void setAddress(String address) {    this.address = address; }
+
+    public String getFullname() {   return fullname;    }
+
+    public void setFullname(String fullname) {  this.fullname = fullname;   }
 }

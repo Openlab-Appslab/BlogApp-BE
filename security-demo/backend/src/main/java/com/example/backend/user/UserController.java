@@ -39,7 +39,8 @@ public class UserController {
                     user.get().getUsername(),
                     user.get().getEmail(),
                     user.get().getAddress(),
-                    user.get().getTelephone()
+                    user.get().getTelephone(),
+                    user.get().getFullname()
             );
         }else{
             throw new UsernameNotFoundException("Uzivatel nebol najdeny!");

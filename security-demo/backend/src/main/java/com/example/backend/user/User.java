@@ -44,6 +44,11 @@ public class User {
             columnDefinition = "TEXT"
     )
     private String telephone;
+    @Column(
+            name = "fullname",
+            columnDefinition = "TEXT"
+    )
+    private String fullname;
 
     @OneToMany
     private List<Blog> listOfBlog;
@@ -51,13 +56,14 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String email, String address, String telephone) {
+    public User(String username, String password, String email, String address, String telephone, String fullname) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.listOfBlog = new ArrayList<>();
         this.address = address;
         this.telephone = telephone;
+        this.fullname = fullname;
     }
 
     public long getId() {
@@ -103,4 +109,8 @@ public class User {
     public String getTelephone() {return telephone;}
 
     public void setTelephone(String telephone) {this.telephone = telephone;}
+
+    public String getFullname() {   return fullname;    }
+
+    public void setFullname(String fullname) {  this.fullname = fullname;   }
 }
