@@ -9,10 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsByNameServiceWrapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,5 +54,10 @@ public class UserController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         return blogService.getBlogsFromUser(userDetails.getUsername());
+    }
+
+    @PutMapping(path = "/Auth/EditUser")
+    public void editUser(@RequestBody User user){
+        userService.editUser(user);
     }
 }

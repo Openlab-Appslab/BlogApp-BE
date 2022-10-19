@@ -10,4 +10,5 @@ public interface UserService {
     Optional<User> getUserByUsername(String username);
     User updateUser(User user);
 
+    void editUser(User user);
 }
