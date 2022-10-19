@@ -19,17 +19,21 @@ public class Blog {
     @Column(length = 50)
     private String date;
 
+    @Column
+    private String title;
+
     private String category;
 
     @ManyToOne
     private User user;
 
-    public Blog(String name, String content, String author, String date, User user, String category) {
+    public Blog(String name, String content, String author, String date, User user, String title, String category) {
         this.name = name;
         this.content = content;
         this.author = author;
         this.date = date;
         this.user = user;
+        this.title = title;
         this.category = category;
     }
 
@@ -76,6 +80,10 @@ public class Blog {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getTitle() {  return title;  }
+
+    public void setTitle(String title) {    this.title = title; }
 
     public User getUser() {
         return user;

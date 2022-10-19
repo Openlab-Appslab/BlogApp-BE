@@ -37,7 +37,9 @@ public class UserController {
         if(user.isPresent()) {
             return new BasicInfoUserDTO(
                     user.get().getUsername(),
-                    user.get().getEmail()
+                    user.get().getEmail(),
+                    user.get().getAddress(),
+                    user.get().getTelephone()
             );
         }else{
             throw new UsernameNotFoundException("Uzivatel nebol najdeny!");

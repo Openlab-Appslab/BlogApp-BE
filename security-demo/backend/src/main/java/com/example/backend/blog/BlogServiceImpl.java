@@ -71,6 +71,7 @@ public class BlogServiceImpl implements BlogService{
                     creationOfBlogDTO.getAuthor(),
                     creationOfBlogDTO.getDate(),
                     user.get(),
+                    creationOfBlogDTO.getTitle(),
                     creationOfBlogDTO.getCategory()
             );
             user.get().getListOfBlog().add(blog);
@@ -91,6 +92,7 @@ public class BlogServiceImpl implements BlogService{
                 blog.getAuthor(),
                 blog.getDate(),
                 blog.getCategory(),
+                blog.getTitle(),
                 email
         );
     }

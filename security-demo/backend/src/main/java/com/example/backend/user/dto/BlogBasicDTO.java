@@ -8,14 +8,16 @@ public class BlogBasicDTO {
     private String date;
     private String category;
     private String email;
+    private String title;
 
-    public BlogBasicDTO(String name, String content, String author, String date, String category, String email) {
+    public BlogBasicDTO(String name, String content, String author, String date, String category, String email, String title) {
         this.name = name;
         this.content = content;
         this.author = author;
         this.date = date;
         this.category = category;
         this.email = email;
+        this.title = title;
 
     }
 
@@ -66,4 +68,8 @@ public class BlogBasicDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getTitle() {  return title;   }
+
+    public void setTitle(String title) {    this.title = title; }
 }
