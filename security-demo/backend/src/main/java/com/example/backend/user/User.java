@@ -36,13 +36,11 @@ public class User {
     private String email;
     @Column(
             name = "address",
-            nullable = false,
             columnDefinition = "TEXT"
     )
     private String address;
     @Column(
             name = "telephone",
-            nullable = false,
             columnDefinition = "TEXT"
     )
     private String telephone;
