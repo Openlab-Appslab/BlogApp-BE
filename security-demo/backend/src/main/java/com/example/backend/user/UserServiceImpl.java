@@ -1,7 +1,8 @@
 package com.example.backend.user;
 
+import com.example.backend.user.dto.BasicInfoUserDTO;
+import com.example.backend.user.dto.EditUserDTO;
 import com.example.backend.user.exception.UserWasNotFound;
-import jdk.internal.org.jline.reader.UserInterruptException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -42,82 +43,88 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void editUser(User userFromFE) {
-       User user = repository.findByEmail(userFromFE.getEmail())
+    public void editUser(EditUserDTO userFromFE, String email) {
+       User user = repository.findByEmail(email)
                .orElseThrow(()->new UserWasNotFound("User wasn't found."));
 
        //Username
 
-        if(userFromFE.getUsername() != null){
-            if(userFromFE.getUsername().length() > 0){
-                if(!Objects.equals(user.getUsername(), userFromFE.getUsername())){
-                  user.setUsername(userFromFE.getUsername());
-                }
-            }else{
-                throw new IllegalStateException("Length of name is too short! Change it");
-            }
+        if(userFromFE.getUsername() != null){}
+            else{throw new IllegalStateException("Property is null!");}
+
+
+        if(userFromFE.getUsername().length() > 0){
+        }else{
+            throw new IllegalStateException("Length of name is too short! Change it");
         }
-            else{
-            throw new IllegalStateException("Property is null!");
+
+        if(Objects.equals(user.getUsername(), userFromFE.getUsername()) == false){
+            user.setUsername(userFromFE.getUsername());
+        }else{
+            System.out.println("Pica");
         }
 
         //Fullname
 
-        if(userFromFE.getFullname() != null){
-            if(userFromFE.getFullname().length() > 0){
-                if(!Objects.equals(user.getFullname(), userFromFE.getFullname())){
-                    user.setFullname(userFromFE.getFullname());
-                }
-            }else{
-                throw new IllegalStateException("Length of name is too short! Change it");
-            }
-        }
+        if(userFromFE.getFullname() != null){}
         else{
-            throw new IllegalStateException("Property is null!");
+            throw new IllegalStateException("Property is null!");}
+
+        if(userFromFE.getFullname().length() > 0){}
+        else{
+                throw new IllegalStateException("Length of name is too short! Change it");}
+
+        if(!Objects.equals(user.getFullname(), userFromFE.getFullname())){
+            user.setFullname(userFromFE.getFullname());
         }
+
 
         //Address
 
-        if(userFromFE.getAddress() != null){
-            if(userFromFE.getAddress().length() > 0){
-                if(!Objects.equals(user.getAddress(), userFromFE.getAddress())){
-                    user.setAddress(userFromFE.getAddress());
-                }
-            }else{
-                throw new IllegalStateException("Length of address is too short! Change it");
-            }
-        }
+        if(userFromFE.getAddress() != null){}
         else{
             throw new IllegalStateException("Property is null!");
+        }
+
+        if(userFromFE.getAddress().length() > 0){
+        }else{
+            throw new IllegalStateException("Length of address is too short! Change it");
+        }
+
+        if(!Objects.equals(user.getAddress(), userFromFE.getAddress())){
+            user.setAddress(userFromFE.getAddress());
         }
 
         //Email
 
-        if(userFromFE.getEmail() != null){
-            if(userFromFE.getEmail().length() > 0){
-                if(!Objects.equals(user.getEmail(), userFromFE.getEmail())){
-                    user.setEmail(userFromFE.getEmail());
-                }
-            }else{
-                throw new IllegalStateException("Length of email is too short! Change it");
-            }
+//        if(userFromFE.getEmail() != null){
+//            if(userFromFE.getEmail().length() > 0){
+//                if(!Objects.equals(user.getEmail(), userFromFE.getEmail())){
+//                    user.setEmail(userFromFE.getEmail());
+//                }
+//            }else{
+//                throw new IllegalStateException("Length of email is too short! Change it");
+//            }
+//        }
+//        else{
+//            throw new IllegalStateException("Property is null!");
+//        }
+
+        //phone
+        if(userFromFE.getTelephone() != null) {
         }
         else{
             throw new IllegalStateException("Property is null!");
         }
 
-        //phone
-        if(userFromFE.getTelephone() != null){
-            if(userFromFE.getTelephone().length() > 0){
-                if(!Objects.equals(user.getTelephone(), userFromFE.getTelephone())){
-                    user.setTelephone(userFromFE.getTelephone());
-                }
-            }else{
-                throw new IllegalStateException("Length of name is too short! Change it");
-            }
+        if(userFromFE.getTelephone().length() > 0){
+        }else{
+            throw new IllegalStateException("Length of name is too short! Change it");
         }
-        else{
-            throw new IllegalStateException("Property is null!");
+
+        if(!Objects.equals(user.getTelephone(), userFromFE.getTelephone())){
+            user.setTelephone(userFromFE.getTelephone());
         }
+
     }
 }

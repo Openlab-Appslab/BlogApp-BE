@@ -4,13 +4,16 @@ import com.example.backend.blog.Blog;
 import com.example.backend.blog.BlogService;
 import com.example.backend.user.dto.BasicInfoUserDTO;
 import com.example.backend.user.dto.BlogBasicDTO;
+import com.example.backend.user.dto.EditUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsByNameServiceWrapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.tags.Param;
 
+import javax.persistence.Basic;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,8 +59,9 @@ public class UserController {
         return blogService.getBlogsFromUser(userDetails.getUsername());
     }
 
-    @PutMapping(path = "/Auth/EditUser")
-    public void editUser(@RequestBody User user){
-        userService.editUser(user);
+    @PostMapping(path = "/Auth/EditUser")
+    public void editUser(@RequestBody EditUserDTO editUserDTO, Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        userService.editUser(editUserDTO, userDetails.getUsername());
     }
 }

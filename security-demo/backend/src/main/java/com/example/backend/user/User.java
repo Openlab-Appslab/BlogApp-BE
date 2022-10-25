@@ -16,6 +16,7 @@ public class User {
             updatable = false
     )
     private long id;
+
     @Column(
             name = "username",
             nullable = false,
