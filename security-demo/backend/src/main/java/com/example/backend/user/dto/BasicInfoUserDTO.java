@@ -2,6 +2,7 @@ package com.example.backend.user.dto;
 
 
 public class BasicInfoUserDTO {
+    private String admin;
     private String username;
     private String email;
     private String address;
@@ -11,13 +12,18 @@ public class BasicInfoUserDTO {
     public BasicInfoUserDTO() {
     }
 
-    public BasicInfoUserDTO(String username, String email, String address, String telephone, String fullname) {
+    public BasicInfoUserDTO(String admin, String username, String email, String address, String telephone, String fullname) {
+        this.admin = admin;
         this.username = username;
         this.email = email;
         this.address = address;
         this.telephone = telephone;
         this.fullname = fullname;
     }
+
+    public String getAdmin() { return admin; }
+
+    public void setAdmin(String admin) { this.admin = admin; }
 
     public String getUsername() {
         return username;

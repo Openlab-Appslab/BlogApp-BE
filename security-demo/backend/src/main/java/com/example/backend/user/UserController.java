@@ -36,6 +36,7 @@ public class UserController {
 
         if(user.isPresent()) {
             return new BasicInfoUserDTO(
+                    user.get().getAdmin(),
                     user.get().getUsername(),
                     user.get().getEmail(),
                     user.get().getAddress(),
