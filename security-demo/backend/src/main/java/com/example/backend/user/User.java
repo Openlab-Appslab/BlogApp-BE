@@ -23,6 +23,13 @@ public class User {
             columnDefinition = "TEXT"
     )
     private String username;
+
+    @Column(
+            name = "admin",
+            updatable = true,
+            columnDefinition = "TEXT"
+    )
+    private String admin;
     @Column(
             name = "password",
             nullable = false,
@@ -57,7 +64,8 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String email, String address, String telephone, String fullname) {
+    public User(String admin, String username, String password, String email, String address, String telephone, String fullname) {
+        this.admin = admin;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -74,6 +82,10 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getAdmin() { return admin; }
+
+    public void setAdmin(String admin) { this.admin = admin; }
 
     public String getUsername() {
         return username;

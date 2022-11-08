@@ -20,15 +20,15 @@ public class DefaultInitialization //implements CommandLineRunner{
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(UserService userService, PasswordEncoder passwordEncoder, UserRepository userRepository){
-        return args-> {
-            String encodePassword= passwordEncoder.encode("1234");
-            User user = new User("Miso", encodePassword, "miso@gmail.com", "KNM", "0903456789", "Michal Sladecek");
-
-            userRepository.save(user);
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(UserService userService, PasswordEncoder passwordEncoder, UserRepository userRepository){
+//        return args-> {
+//            String encodePassword= passwordEncoder.encode("1234");
+//            User user = new User("Miso", encodePassword, "miso@gmail.com", "KNM", "0903456789", "Michal Sladecek");
+//
+//            userRepository.save(user);
+//        };
+//    }
 
 
 
