@@ -6,9 +6,9 @@ import com.example.backend.user.dto.CreationOfBlogDTO;
 import java.util.List;
 
 public interface BlogService {
-    Blog getBlog(String blogName);
+    BlogBasicDTO getBlog(String title);
 
-    List<BlogBasicDTO> getAllBlogs(String email);
+    List<BlogBasicDTO> getAllBlogs();
 
     void addNewBlog(CreationOfBlogDTO creationOfBlogDTO, String username);
 

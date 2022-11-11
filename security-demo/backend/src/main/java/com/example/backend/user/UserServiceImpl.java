@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -126,5 +128,29 @@ public class UserServiceImpl implements UserService {
             user.setTelephone(userFromFE.getTelephone());
         }
 
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        List<User> listOfUser = new ArrayList<>();
+
+        for (User user: repository.findAll()){
+            if(user.getAdmin() == null){
+                listOfUser.add(user);
+            }
+        }
+        return listOfUser;
+    }
+
+    @Override
+    public List<User> getAllAdmin() {
+        List<User> listOfAdmin = new ArrayList<>();
+
+        for (User user: repository.findAll()){
+            if(user.getAdmin() != null){
+                listOfAdmin.add(user);
+            }
+        }
+        return listOfAdmin;
     }
 }

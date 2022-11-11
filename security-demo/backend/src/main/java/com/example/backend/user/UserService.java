@@ -13,4 +13,8 @@ public interface UserService {
     User updateUser(User user);
 
     void editUser(EditUserDTO userFromFE, String email);
+
+    List<User> getAllUser();
+
+    List<User> getAllAdmin();
 }
