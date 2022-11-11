@@ -27,8 +27,9 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public Blog getBlog(String blogName) {
-        return blogRepository.findById(blogName).orElseThrow(EntityNotFoundException::new);
+    public BlogBasicDTO getBlog(String title) {
+       Blog blog = blogRepository.findById(title).orElseThrow(EntityNotFoundException::new);
+        return convertBlogToDTO(blog);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class BlogServiceImpl implements BlogService{
         List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();
 
         blogList.forEach((e) ->{
-            blogBasicDTOList.add(convertBlogToDTO(e, email));
+            blogBasicDTOList.add(convertBlogToDTO(e));
         });
 
         return blogBasicDTOList;
@@ -51,7 +52,7 @@ public class BlogServiceImpl implements BlogService{
             List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();
 
             user.get().getListOfBlog().forEach((e) ->{
-                blogBasicDTOList.add(convertBlogToDTO(e, user.get().getEmail()));
+                blogBasicDTOList.add(convertBlogToDTO(e));
             });
 
             return blogBasicDTOList;
@@ -85,15 +86,14 @@ public class BlogServiceImpl implements BlogService{
 
 
 
-    public BlogBasicDTO convertBlogToDTO(Blog blog, String email){
+    public BlogBasicDTO convertBlogToDTO(Blog blog){
         return new BlogBasicDTO(
                 blog.getName(),
                 blog.getContent(),
                 blog.getAuthor(),
                 blog.getDate(),
                 blog.getCategory(),
-                blog.getTitle(),
-                email
+                blog.getTitle()
         );
     }
 }
