@@ -30,7 +30,6 @@ public class User {
             columnDefinition = "TEXT"
     )
     private String admin;
-
     @Column(
             name = "password",
             nullable = false,
@@ -59,8 +58,8 @@ public class User {
     )
     private String fullname;
 
-    @OneToMany//(mappedBy = "blog")
-    private List<Blog> listOfBlog = new ArrayList<>();
+    @OneToMany
+    private List<Blog> listOfBlog;
 
     public User() {
     }
@@ -70,10 +69,10 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.listOfBlog = new ArrayList<>();
         this.address = address;
         this.telephone = telephone;
         this.fullname = fullname;
-        //this.listOfBlog = new ArrayList<>();
     }
 
     public long getId() {

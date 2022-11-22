@@ -25,7 +25,6 @@ public class Blog {
     private String category;
 
     @ManyToOne
-    //@JoinColumn(name="user_id")
     private User user;
 
     public Blog(String name, String content, String author, String date, User user, String title, String category) {

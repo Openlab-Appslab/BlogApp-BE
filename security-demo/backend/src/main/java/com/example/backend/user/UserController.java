@@ -65,14 +65,4 @@ public class UserController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         userService.editUser(editUserDTO, userDetails.getUsername());
     }
-
-    @GetMapping(path ="/Auth/GetAllUser")
-    public List<User> getAllUser(){
-        return userService.getAllUser();
-    }
-
-    @GetMapping(path = "/Auth/GetAllAdmin")
-    public List<User> getAllAdmin(){
-        return userService.getAllAdmin();
-    }
 }

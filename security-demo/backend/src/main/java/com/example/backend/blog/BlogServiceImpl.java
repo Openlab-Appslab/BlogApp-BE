@@ -32,7 +32,7 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public List<BlogBasicDTO> getAllBlogs() {
+    public List<BlogBasicDTO> getAllBlogs(String email) {
         List<Blog> blogList = new ArrayList<>(blogRepository.findAll());
 
         List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();

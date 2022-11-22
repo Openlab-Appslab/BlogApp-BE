@@ -8,7 +8,7 @@ import java.util.List;
 public interface BlogService {
     Blog getBlog(String blogName);
 
-    List<BlogBasicDTO> getAllBlogs();
+    List<BlogBasicDTO> getAllBlogs(String email);
 
     void addNewBlog(CreationOfBlogDTO creationOfBlogDTO, String username);
 
