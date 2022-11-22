@@ -7,14 +7,16 @@ public class BlogBasicDTO {
     private String author;
     private String date;
     private String category;
+    private String email;
     private String title;
 
-    public BlogBasicDTO(String name, String content, String author, String date, String category, String title) {
+    public BlogBasicDTO(String name, String content, String author, String date, String category, String email, String title) {
         this.name = name;
         this.content = content;
         this.author = author;
         this.date = date;
         this.category = category;
+        this.email = email;
         this.title = title;
 
     }
@@ -57,6 +59,14 @@ public class BlogBasicDTO {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getTitle() {  return title;   }

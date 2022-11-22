@@ -7,11 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 public class Blog {
-
     @Id
-    private String title;
-
-    @Column
     private String name;
 
     @Column(length = 80000)
@@ -22,6 +18,9 @@ public class Blog {
 
     @Column(length = 50)
     private String date;
+
+    @Column
+    private String title;
 
     private String category;
 
