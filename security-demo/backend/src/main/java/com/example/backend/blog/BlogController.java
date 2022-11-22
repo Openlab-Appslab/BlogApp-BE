@@ -22,20 +22,19 @@ public class BlogController {
     }
 
     @GetMapping("blog/{id}")
-    public BlogBasicDTO getBlog(@PathVariable("id") String title) {
-//        try {
-//            return new ResponseEntity<>(new BlogResponse(this.blogService.getBlog(blogName)), HttpStatus.OK);
-//        } catch (EntityNotFoundException e) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-        return blogService.getBlog(title);
+    public ResponseEntity<BlogResponse> getBlog(@PathVariable("id") String blogName) {
+        try {
+            return new ResponseEntity<>(new BlogResponse(this.blogService.getBlog(blogName)), HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    @GetMapping(path = "/noAuth/getAllBlogs")
-    public List<BlogBasicDTO> getAllBlogs(){
-//        UserDetails user =(UserDetails) authentication.getPrincipal();
+    @GetMapping(path = "/getAllBlogs")
+    public List<BlogBasicDTO> getAllBlogs(Authentication authentication){
+        UserDetails user = (UserDetails) authentication.getPrincipal();
 
-        return blogService.getAllBlogs();
+        return blogService.getAllBlogs(user.getUsername());
     }
 
     @GetMapping(path = "/noAuth/test1")
