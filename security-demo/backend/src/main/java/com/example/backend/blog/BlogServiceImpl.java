@@ -1,5 +1,6 @@
 package com.example.backend.blog;
 
+import com.example.backend.blog.exception.BlogWasNotFound;
 import com.example.backend.user.User;
 import com.example.backend.user.UserRepository;
 import com.example.backend.user.dto.BlogBasicDTO;
@@ -27,18 +28,26 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public Blog getBlog(String blogName) {
-        return blogRepository.findById(blogName).orElseThrow(EntityNotFoundException::new);
+    public BlogBasicDTO getBlog(String blogName) {
+        //Blog blog = blogRepository.findById(blogName).orElseThrow(EntityNotFoundException::new);
+
+        Optional<Blog> blog = blogRepository.findById(blogName);
+
+        if(blog.isPresent()){
+            return convertBlogToDTO(blog.get());
+        }else{
+            throw new BlogWasNotFound("Blog didn't find!");
+        }
     }
 
     @Override
-    public List<BlogBasicDTO> getAllBlogs(String email) {
+    public List<BlogBasicDTO> getAllBlogs() {
         List<Blog> blogList = new ArrayList<>(blogRepository.findAll());
 
         List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();
 
         blogList.forEach((e) ->{
-            blogBasicDTOList.add(convertBlogToDTO(e, email));
+            blogBasicDTOList.add(convertBlogToDTO(e));
         });
 
         return blogBasicDTOList;
@@ -51,7 +60,7 @@ public class BlogServiceImpl implements BlogService{
             List<BlogBasicDTO> blogBasicDTOList = new ArrayList<>();
 
             user.get().getListOfBlog().forEach((e) ->{
-                blogBasicDTOList.add(convertBlogToDTO(e, user.get().getEmail()));
+                blogBasicDTOList.add(convertBlogToDTO(e));
             });
 
             return blogBasicDTOList;
@@ -85,15 +94,14 @@ public class BlogServiceImpl implements BlogService{
 
 
 
-    public BlogBasicDTO convertBlogToDTO(Blog blog, String email){
+    public BlogBasicDTO convertBlogToDTO(Blog blog){
         return new BlogBasicDTO(
                 blog.getName(),
                 blog.getContent(),
                 blog.getAuthor(),
                 blog.getDate(),
                 blog.getCategory(),
-                blog.getTitle(),
-                email
+                blog.getTitle()
         );
     }
 }

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Entity
 public class Blog {
     @Id
-    private String name;
+    private String title;
 
     @Column(length = 80000)
     private String content;
@@ -20,11 +20,12 @@ public class Blog {
     private String date;
 
     @Column
-    private String title;
+    private String name;
 
     private String category;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     public Blog(String name, String content, String author, String date, User user, String title, String category) {

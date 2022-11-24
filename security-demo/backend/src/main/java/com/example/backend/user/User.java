@@ -1,10 +1,13 @@
 package com.example.backend.user;
 
 import com.example.backend.blog.Blog;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -58,8 +61,9 @@ public class User {
     )
     private String fullname;
 
-    @OneToMany
-    private List<Blog> listOfBlog;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Blog> listOfBlog;
 
     public User() {
     }
@@ -69,7 +73,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.listOfBlog = new ArrayList<>();
+        this.listOfBlog = new HashSet<>();
         this.address = address;
         this.telephone = telephone;
         this.fullname = fullname;
@@ -107,11 +111,11 @@ public class User {
 
     public void setEmail(String email) { this.email = email; }
 
-    public List<Blog> getListOfBlog() {
+    public Set<Blog> getListOfBlog() {
         return listOfBlog;
     }
 
-    public void setListOfBlog(List<Blog> listOfBlog) {
+    public void setListOfBlog(HashSet<Blog> listOfBlog) {
         this.listOfBlog = listOfBlog;
     }
 
