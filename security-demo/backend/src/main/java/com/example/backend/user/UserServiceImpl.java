@@ -153,8 +153,4 @@ public class UserServiceImpl implements UserService {
         return listOfAdmin;
     }
 
-    @Override
-    public String getRole(Optional<User> user) {
-        return user.getAdmin();
-    }
 }
