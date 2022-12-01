@@ -28,10 +28,10 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public BlogBasicDTO getBlog(String blogName) {
+    public BlogBasicDTO getBlog(String title) {
         //Blog blog = blogRepository.findById(blogName).orElseThrow(EntityNotFoundException::new);
 
-        Optional<Blog> blog = blogRepository.findById(blogName);
+        Optional<Blog> blog = blogRepository.findByTitle(title);
 
         if(blog.isPresent()){
             return convertBlogToDTO(blog.get());
@@ -70,8 +70,8 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public void addNewBlog(CreationOfBlogDTO creationOfBlogDTO, String username) {
-        Optional<User> user = userRepository.findByEmail(username);
+    public void addNewBlog(CreationOfBlogDTO creationOfBlogDTO, String email) {
+        Optional<User> user = userRepository.findByEmail(email);
 
         if(user.isPresent()){
             Blog blog = new Blog(
@@ -86,6 +86,7 @@ public class BlogServiceImpl implements BlogService{
             user.get().getListOfBlog().add(blog);
             blogRepository.save(blog);
             userRepository.save(user.get());
+
         }else{
             throw new UsernameNotFoundException("User was not found!");
         }

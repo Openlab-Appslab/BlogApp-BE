@@ -1,6 +1,5 @@
 package com.example.backend.user;
 
-import com.example.backend.user.dto.BasicInfoUserDTO;
 import com.example.backend.user.dto.EditUserDTO;
 import com.example.backend.user.exception.UserWasNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -152,5 +151,10 @@ public class UserServiceImpl implements UserService {
             }
         }
         return listOfAdmin;
+    }
+
+    @Override
+    public String getRole(Optional<User> user) {
+        return user.getAdmin();
     }
 }

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Entity
 public class Blog {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String title;
 
     @Column(length = 80000)
@@ -29,12 +30,12 @@ public class Blog {
     private User user;
 
     public Blog(String name, String content, String author, String date, User user, String title, String category) {
+        this.title = title;
         this.name = name;
         this.content = content;
         this.author = author;
         this.date = date;
         this.user = user;
-        this.title = title;
         this.category = category;
     }
 

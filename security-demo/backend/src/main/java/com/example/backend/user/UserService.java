@@ -1,7 +1,5 @@
 package com.example.backend.user;
 
-import com.example.backend.blog.Blog;
-import com.example.backend.user.dto.BasicInfoUserDTO;
 import com.example.backend.user.dto.EditUserDTO;
 
 import java.util.List;
