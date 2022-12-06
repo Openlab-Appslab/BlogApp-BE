@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Entity
 public class Blog {
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String title;
 
     @Column(length = 80000)
