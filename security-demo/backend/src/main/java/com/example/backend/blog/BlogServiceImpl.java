@@ -36,7 +36,7 @@ public class BlogServiceImpl implements BlogService{
         if(blog.isPresent()){
             return convertBlogToDTO(blog.get());
         }else{
-            throw new BlogWasNotFound("Blog didn't find!");
+            throw new BlogWasNotFound("Blog wasn't found!");
         }
     }
 
