@@ -10,7 +10,7 @@ public class CreationOfBlogDTO {
     private String title;
 
 
-    public CreationOfBlogDTO(String name, String content, String author, String category, String date, String title) {
+    public CreationOfBlogDTO( String name, String content, String author, String category, String date, String title) {
         this.name = name;
         this.content = content;
         this.author = author;

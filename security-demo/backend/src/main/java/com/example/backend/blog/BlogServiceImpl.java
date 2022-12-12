@@ -98,6 +98,7 @@ public class BlogServiceImpl implements BlogService{
 
     public BlogBasicDTO convertBlogToDTO(Blog blog){
         return new BlogBasicDTO(
+                blog.getId(),
                 blog.getName(),
                 blog.getContent(),
                 blog.getAuthor(),

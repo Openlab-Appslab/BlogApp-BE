@@ -32,7 +32,7 @@ public class Blog {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    public Blog(String name, String content, String author, String date, User user, String title, String category) {
+    public Blog( String name, String content, String author, String date, User user, String title, String category) {
         this.title = title;
         this.name = name;
         this.content = content;
@@ -44,6 +44,14 @@ public class Blog {
 
     public Blog() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -97,4 +105,5 @@ public class Blog {
     public void setUser(User user) {
         this.user = user;
     }
+
 }
