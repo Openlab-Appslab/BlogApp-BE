@@ -28,11 +28,12 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public BlogBasicDTO getBlog(String title) {
+    public BlogBasicDTO getBlog(Long id) {
         //Blog blog = blogRepository.findById(blogName).orElseThrow(EntityNotFoundException::new);
 
-        Optional<Blog> blog = blogRepository.findByTitle(title);
+//        Optional<Blog> blog = blogRepository.findById(id);
 
+        Optional<Blog> blog = blogRepository.findById(id);
         if(blog.isPresent()){
             return convertBlogToDTO(blog.get());
         }else{

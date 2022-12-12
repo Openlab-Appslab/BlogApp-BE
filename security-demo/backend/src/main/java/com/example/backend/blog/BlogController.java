@@ -22,13 +22,13 @@ public class BlogController {
     }
 
     @GetMapping("/noAuth/blog/{id}")
-    public BlogBasicDTO getBlog(@PathVariable("id") String title) {
+    public BlogBasicDTO getBlog(@PathVariable("id") Long id) {
 //        try {
 //            return new ResponseEntity<>(new BlogResponse(this.blogService.getBlog(blogName)), HttpStatus.OK);
 //        } catch (EntityNotFoundException e) {
 //            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //        }
-        return blogService.getBlog(title);
+        return blogService.getBlog(id);
     }
 
     @GetMapping(path = "/noAuth/getAllBlogs")
