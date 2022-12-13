@@ -45,4 +45,11 @@ public class BlogController {
         blogService.addNewBlog(creationOfBlogDTO, userDetails.getUsername());
     }
 
+    @DeleteMapping("/NoAuth/deleteBlog/{id}")
+    public void deleteBlog(@PathVariable Long id, Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        blogService.deleteBlog(id, userDetails.getUsername());
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.backend.user;
 
+import com.example.backend.blog.Blog;
 import com.example.backend.user.dto.EditUserDTO;
 import com.example.backend.user.exception.UserWasNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -153,4 +154,16 @@ public class UserServiceImpl implements UserService {
         return listOfAdmin;
     }
 
+    @Override
+    public void deleteUserAndAddUsersBlogToAdmin(Long id) {
+        Optional<User> user = repository.findById(id);
+        User undefinedUser = new User();
+
+        for (Blog blog : user.get().getListOfBlog()) {
+            blog.setUser(undefinedUser);
+        }
+        
+        user.get().setListOfBlog(null);
+        repository.delete(user.get());
+    }
 }

@@ -93,6 +93,20 @@ public class BlogServiceImpl implements BlogService{
         }
     }
 
+    @Override
+    public void deleteBlog(Long id, String email) {
+        Optional<Blog> blog = blogRepository.findById(id);
+        Optional<User> user = userRepository.findByEmail(email);
+
+        if(blog.isPresent()){
+            user.get().getListOfBlog().remove(blog.get());
+            blog.get().setUser(null);
+
+            blogRepository.delete(blog.get());
+        }else{
+            throw new BlogWasNotFound("Blog was not found!");
+        }
+    }
 
 
 

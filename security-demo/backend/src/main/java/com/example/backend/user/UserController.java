@@ -75,4 +75,9 @@ public class UserController {
     public List<User> getAllAdmin(){
         return userService.getAllAdmin();
     }
+
+    @DeleteMapping("/NoAuth/deleteUser/{id}")
+    public void deleteUserAndAddUsersBlogToAdmin(@PathVariable Long id){
+        userService.deleteUserAndAddUsersBlogToAdmin(id);
+    }
 }

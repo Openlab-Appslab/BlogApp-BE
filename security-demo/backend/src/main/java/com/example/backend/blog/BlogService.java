@@ -13,4 +13,6 @@ public interface BlogService {
     void addNewBlog(CreationOfBlogDTO creationOfBlogDTO, String username);
 
     List<BlogBasicDTO> getBlogsFromUser (String email);
+
+    void deleteBlog(Long id, String email);
 }
