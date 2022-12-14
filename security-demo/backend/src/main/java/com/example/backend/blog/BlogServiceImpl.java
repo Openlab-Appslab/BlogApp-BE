@@ -108,7 +108,38 @@ public class BlogServiceImpl implements BlogService{
         }
     }
 
+    @Override
+    public List<BlogBasicDTO> getAllTechBlogs() {
+        List<BlogBasicDTO> listOfTechBlog = new ArrayList<>();
 
+        for (Blog blog: blogRepository.findAll()) {
+            if(blog.getCategory().equals("Tech"))
+                listOfTechBlog.add(convertBlogToDTO(blog));
+        }
+        return listOfTechBlog;
+    }
+
+    @Override
+    public List<BlogBasicDTO> getAllZdravieBlogs() {
+        List<BlogBasicDTO> listOfZdravieBlog = new ArrayList<>();
+
+        for (Blog blog: blogRepository.findAll()) {
+            if(blog.getCategory().equals("Zdravie"))
+                listOfZdravieBlog.add(convertBlogToDTO(blog));
+        }
+        return listOfZdravieBlog;
+    }
+
+    @Override
+    public List<BlogBasicDTO> getAllKulturaBlogs() {
+        List<BlogBasicDTO> listOfKulturaBlog = new ArrayList<>();
+
+        for (Blog blog: blogRepository.findAll()) {
+            if(blog.getCategory().equals("Kultúra"))
+                listOfKulturaBlog.add(convertBlogToDTO(blog));
+        }
+        return listOfKulturaBlog;
+    }
 
     public BlogBasicDTO convertBlogToDTO(Blog blog){
         return new BlogBasicDTO(

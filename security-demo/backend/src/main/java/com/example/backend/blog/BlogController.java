@@ -52,4 +52,19 @@ public class BlogController {
         blogService.deleteBlog(id, userDetails.getUsername());
     }
 
+    @GetMapping("/noAuth/getTechBlogs")
+    public List<BlogBasicDTO> getTechBlogs(){
+        return blogService.getAllTechBlogs();
+    }
+
+    @GetMapping("/noAuth/getZdravieBlogs")
+    public List<BlogBasicDTO> getZdravieBlogs(){
+        return blogService.getAllZdravieBlogs();
+    }
+
+    @GetMapping("/noAuth/getKulturaBlogs")
+    public List<BlogBasicDTO> getKulturaBlogs(){
+        return blogService.getAllKulturaBlogs();
+    }
+
 }

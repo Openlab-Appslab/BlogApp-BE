@@ -15,4 +15,10 @@ public interface BlogService {
     List<BlogBasicDTO> getBlogsFromUser (String email);
 
     void deleteBlog(Long id, String email);
+
+    List<BlogBasicDTO> getAllTechBlogs();
+
+    List<BlogBasicDTO> getAllZdravieBlogs();
+
+    List<BlogBasicDTO> getAllKulturaBlogs();
 }
