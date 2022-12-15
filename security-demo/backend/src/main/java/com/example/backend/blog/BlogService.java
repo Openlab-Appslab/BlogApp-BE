@@ -21,4 +21,6 @@ public interface BlogService {
     List<BlogBasicDTO> getAllZdravieBlogs();
 
     List<BlogBasicDTO> getAllKulturaBlogs();
+
+    List<BlogBasicDTO> getAllPolitikaBlogs();
 }

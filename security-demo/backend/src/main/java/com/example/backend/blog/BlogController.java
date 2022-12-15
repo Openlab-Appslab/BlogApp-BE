@@ -67,4 +67,9 @@ public class BlogController {
         return blogService.getAllKulturaBlogs();
     }
 
+    @GetMapping("/noAuth/getPolitikaBlogs")
+    public List<BlogBasicDTO> getPolitikaBlogs(){
+        return blogService.getAllPolitikaBlogs();
+    }
+
 }

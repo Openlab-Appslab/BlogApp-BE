@@ -141,6 +141,17 @@ public class BlogServiceImpl implements BlogService{
         return listOfKulturaBlog;
     }
 
+    @Override
+    public List<BlogBasicDTO> getAllPolitikaBlogs() {
+        List<BlogBasicDTO> listOfPolitikaBlog = new ArrayList<>();
+
+        for (Blog blog: blogRepository.findAll()) {
+            if(blog.getCategory().equals("Politika"))
+                listOfPolitikaBlog.add(convertBlogToDTO(blog));
+        }
+        return listOfPolitikaBlog;
+    }
+
     public BlogBasicDTO convertBlogToDTO(Blog blog){
         return new BlogBasicDTO(
                 blog.getId(),
