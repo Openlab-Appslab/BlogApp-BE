@@ -23,13 +23,13 @@ public class BlogController {
     }
 
     @GetMapping("/noAuth/blog/{id}")
-    public BlogBasicDTO getBlog(@PathVariable("id") String title) {
+    public BlogBasicDTO getBlog(@PathVariable("id") Long id) {
 //        try {
 //            return new ResponseEntity<>(new BlogResponse(this.blogService.getBlog(blogName)), HttpStatus.OK);
 //        } catch (EntityNotFoundException e) {
 //            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //        }
-        return blogService.getBlog(title);
+        return blogService.getBlog(id);
     }
 
     @GetMapping(path = "/noAuth/getAllBlogs")
@@ -44,6 +44,33 @@ public class BlogController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         blogService.addNewBlog(creationOfBlogDTO, userDetails.getUsername());
+    }
+
+    @DeleteMapping("/NoAuth/deleteBlog/{id}")
+    public void deleteBlog(@PathVariable Long id, Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        blogService.deleteBlog(id, userDetails.getUsername());
+    }
+
+    @GetMapping("/noAuth/getTechBlogs")
+    public List<BlogBasicDTO> getTechBlogs(){
+        return blogService.getAllTechBlogs();
+    }
+
+    @GetMapping("/noAuth/getZdravieBlogs")
+    public List<BlogBasicDTO> getZdravieBlogs(){
+        return blogService.getAllZdravieBlogs();
+    }
+
+    @GetMapping("/noAuth/getKulturaBlogs")
+    public List<BlogBasicDTO> getKulturaBlogs(){
+        return blogService.getAllKulturaBlogs();
+    }
+
+    @GetMapping("/noAuth/getPolitikaBlogs")
+    public List<BlogBasicDTO> getPolitikaBlogs(){
+        return blogService.getAllPolitikaBlogs();
     }
 
 }

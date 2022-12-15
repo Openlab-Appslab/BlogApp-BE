@@ -28,11 +28,12 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public BlogBasicDTO getBlog(String title) {
+    public BlogBasicDTO getBlog(Long id) {
         //Blog blog = blogRepository.findById(blogName).orElseThrow(EntityNotFoundException::new);
 
-        Optional<Blog> blog = blogRepository.findByTitle(title);
+//        Optional<Blog> blog = blogRepository.findById(id);
 
+        Optional<Blog> blog = blogRepository.findById(id);
         if(blog.isPresent()){
             return convertBlogToDTO(blog.get());
         }else{
@@ -92,11 +93,68 @@ public class BlogServiceImpl implements BlogService{
         }
     }
 
+    @Override
+    public void deleteBlog(Long id, String email) {
+        Optional<Blog> blog = blogRepository.findById(id);
+        Optional<User> user = userRepository.findByEmail(email);
 
+        if(blog.isPresent()){
+            user.get().getListOfBlog().remove(blog.get());
+            blog.get().setUser(null);
 
+            blogRepository.delete(blog.get());
+        }else{
+            throw new BlogWasNotFound("Blog was not found!");
+        }
+    }
+
+    @Override
+    public List<BlogBasicDTO> getAllTechBlogs() {
+        List<BlogBasicDTO> listOfTechBlog = new ArrayList<>();
+
+        for (Blog blog: blogRepository.findAll()) {
+            if(blog.getCategory().equals("Tech"))
+                listOfTechBlog.add(convertBlogToDTO(blog));
+        }
+        return listOfTechBlog;
+    }
+
+    @Override
+    public List<BlogBasicDTO> getAllZdravieBlogs() {
+        List<BlogBasicDTO> listOfZdravieBlog = new ArrayList<>();
+
+        for (Blog blog: blogRepository.findAll()) {
+            if(blog.getCategory().equals("Zdravie"))
+                listOfZdravieBlog.add(convertBlogToDTO(blog));
+        }
+        return listOfZdravieBlog;
+    }
+
+    @Override
+    public List<BlogBasicDTO> getAllKulturaBlogs() {
+        List<BlogBasicDTO> listOfKulturaBlog = new ArrayList<>();
+
+        for (Blog blog: blogRepository.findAll()) {
+            if(blog.getCategory().equals("Kultúra"))
+                listOfKulturaBlog.add(convertBlogToDTO(blog));
+        }
+        return listOfKulturaBlog;
+    }
+
+    @Override
+    public List<BlogBasicDTO> getAllPolitikaBlogs() {
+        List<BlogBasicDTO> listOfPolitikaBlog = new ArrayList<>();
+
+        for (Blog blog: blogRepository.findAll()) {
+            if(blog.getCategory().equals("Politika"))
+                listOfPolitikaBlog.add(convertBlogToDTO(blog));
+        }
+        return listOfPolitikaBlog;
+    }
 
     public BlogBasicDTO convertBlogToDTO(Blog blog){
         return new BlogBasicDTO(
+                blog.getId(),
                 blog.getName(),
                 blog.getContent(),
                 blog.getAuthor(),

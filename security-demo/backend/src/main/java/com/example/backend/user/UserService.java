@@ -15,4 +15,6 @@ public interface UserService {
     List<User> getAllUser();
 
     List<User> getAllAdmin();
+
+    void deleteUserAndAddUsersBlogToAdmin(Long id);
 }

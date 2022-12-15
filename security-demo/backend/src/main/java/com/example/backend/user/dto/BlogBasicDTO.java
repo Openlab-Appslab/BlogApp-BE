@@ -2,6 +2,7 @@ package com.example.backend.user.dto;
 
 public class BlogBasicDTO {
 
+    private Long id;
     private String name;
     private String content;
     private String author;
@@ -9,7 +10,8 @@ public class BlogBasicDTO {
     private String category;
     private String title;
 
-    public BlogBasicDTO(String name, String content, String author, String date, String category, String title) {
+    public BlogBasicDTO(Long id, String name, String content, String author, String date, String category, String title) {
+        this.id = id;
         this.name = name;
         this.content = content;
         this.author = author;
@@ -18,6 +20,10 @@ public class BlogBasicDTO {
         this.title = title;
 
     }
+
+    public Long getId() { return id;}
+
+    public void setId(Long id) {this.id = id;}
 
     public String getName() {
         return name;
