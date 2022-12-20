@@ -26,13 +26,16 @@ public class Blog {
     @Column
     private String name;
 
+    @Column
+    private int likes;
+
     private String category;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    public Blog( String name, String content, String author, String date, User user, String title, String category) {
+    public Blog( String name, String content, String author, String date, User user, String title, String category, int likes) {
         this.title = title;
         this.name = name;
         this.content = content;
@@ -40,6 +43,7 @@ public class Blog {
         this.date = date;
         this.user = user;
         this.category = category;
+        this.likes = likes;
     }
 
     public Blog() {
@@ -106,4 +110,7 @@ public class Blog {
         this.user = user;
     }
 
+    public int getLikes() { return likes; }
+
+    public void setLikes(int likes) { this.likes = likes; }
 }

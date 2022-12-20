@@ -8,15 +8,17 @@ public class CreationOfBlogDTO {
     private String category;
     private String date;
     private String title;
+    private int likes;
 
 
-    public CreationOfBlogDTO( String name, String content, String author, String category, String date, String title) {
+    public CreationOfBlogDTO( String name, String content, String author, String category, String date, String title, int likes) {
         this.name = name;
         this.content = content;
         this.author = author;
         this.category = category;
         this.date = date;
         this.title = title;
+        this.likes = likes;
     }
 
     public String getName() {
@@ -62,4 +64,8 @@ public class CreationOfBlogDTO {
     public String getTitle() {return title;}
 
     public void setTitle(String title) {this.title = title;}
+
+    public int getLikes() { return likes; }
+
+    public void setLikes(int likes) { this.likes = likes; }
 }
