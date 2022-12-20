@@ -82,8 +82,7 @@ public class BlogServiceImpl implements BlogService{
                     creationOfBlogDTO.getDate(),
                     user.get(),
                     creationOfBlogDTO.getTitle(),
-                    creationOfBlogDTO.getCategory(),
-                    creationOfBlogDTO.getLikes()
+                    creationOfBlogDTO.getCategory()
             );
             user.get().getListOfBlog().add(blog);
             blogRepository.save(blog);
