@@ -1,9 +1,11 @@
 package com.example.backend.blog;
 
+import com.example.backend.likes.Likes;
 import com.example.backend.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 public class Blog {
@@ -26,11 +28,15 @@ public class Blog {
     @Column
     private String name;
 
+
     private String category;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    @OneToMany(mappedBy = "blogid")
+    private Set<Likes> listOfLikes;
 
     public Blog( String name, String content, String author, String date, User user, String title, String category) {
         this.title = title;
@@ -106,4 +112,4 @@ public class Blog {
         this.user = user;
     }
 
-}
+    }

@@ -9,7 +9,6 @@ public class CreationOfBlogDTO {
     private String date;
     private String title;
 
-
     public CreationOfBlogDTO( String name, String content, String author, String category, String date, String title) {
         this.name = name;
         this.content = content;
@@ -17,6 +16,7 @@ public class CreationOfBlogDTO {
         this.category = category;
         this.date = date;
         this.title = title;
+
     }
 
     public String getName() {
@@ -62,4 +62,5 @@ public class CreationOfBlogDTO {
     public String getTitle() {return title;}
 
     public void setTitle(String title) {this.title = title;}
+
 }

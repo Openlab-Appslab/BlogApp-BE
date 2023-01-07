@@ -1,6 +1,7 @@
 package com.example.backend.user;
 
 import com.example.backend.blog.Blog;
+import com.example.backend.likes.Likes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -64,6 +65,9 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Blog> listOfBlog;
+
+    @OneToMany(mappedBy = "userid")
+    private Set<Likes> likedBlogs;
 
     public User() {
     }
