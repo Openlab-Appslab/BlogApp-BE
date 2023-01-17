@@ -1,5 +1,8 @@
 package com.example.backend.blog;
 
+import com.example.backend.Image.Image;
+import com.example.backend.Image.ImageRepository;
+import com.example.backend.Image.ImageUtility;
 import com.example.backend.blog.exception.BlogWasNotFound;
 import com.example.backend.user.User;
 import com.example.backend.user.UserRepository;
@@ -20,11 +23,13 @@ public class BlogServiceImpl implements BlogService{
 
     private final BlogRepository blogRepository;
     private final UserRepository userRepository;
+    private final ImageRepository imageRepository;
 
     @Autowired
-    public BlogServiceImpl(BlogRepository blogRepository, UserRepository userRepository) {
+    public BlogServiceImpl(BlogRepository blogRepository, UserRepository userRepository, ImageRepository imageRepository) {
         this.blogRepository = blogRepository;
         this.userRepository = userRepository;
+        this.imageRepository = imageRepository;
     }
 
     @Override
@@ -85,6 +90,7 @@ public class BlogServiceImpl implements BlogService{
                     creationOfBlogDTO.getCategory()
             );
             user.get().getListOfBlog().add(blog);
+
             blogRepository.save(blog);
             userRepository.save(user.get());
 
