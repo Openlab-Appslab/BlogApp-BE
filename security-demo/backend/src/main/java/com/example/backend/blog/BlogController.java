@@ -73,4 +73,14 @@ public class BlogController {
         return blogService.getAllPolitikaBlogs();
     }
 
+    @GetMapping("/noAuth/getPrirodaBlogs")
+    public List<BlogBasicDTO> getPrirodaBlogs(){
+        return blogService.getAllPrirodaBlogs();
+    }
+
+    @GetMapping("/noAuth/getSvetadielBlogs")
+    public List<BlogBasicDTO> getSvetadielBlogs(){
+        return blogService.getAllSvetadielBlogs();
+    }
+
 }

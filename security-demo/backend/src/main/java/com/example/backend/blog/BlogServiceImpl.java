@@ -152,6 +152,28 @@ public class BlogServiceImpl implements BlogService{
         return listOfPolitikaBlog;
     }
 
+    @Override
+    public List<BlogBasicDTO> getAllPrirodaBlogs() {
+        List<BlogBasicDTO> listOfPrirodaBlog = new ArrayList<>();
+
+        for (Blog blog: blogRepository.findAll()) {
+            if(blog.getCategory().equals("Priroda"))
+                listOfPrirodaBlog.add(convertBlogToDTO(blog));
+        }
+        return listOfPrirodaBlog;
+    }
+
+    @Override
+    public List<BlogBasicDTO> getAllSvetadielBlogs() {
+        List<BlogBasicDTO> listOfSvetadielBlog = new ArrayList<>();
+
+        for (Blog blog: blogRepository.findAll()) {
+            if(blog.getCategory().equals("Svetadiel"))
+                listOfSvetadielBlog.add(convertBlogToDTO(blog));
+        }
+        return listOfSvetadielBlog;
+    }
+
     public BlogBasicDTO convertBlogToDTO(Blog blog){
         return new BlogBasicDTO(
                 blog.getId(),
