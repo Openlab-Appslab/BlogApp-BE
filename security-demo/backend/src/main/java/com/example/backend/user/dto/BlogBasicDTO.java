@@ -9,8 +9,9 @@ public class BlogBasicDTO {
     private String date;
     private String category;
     private String title;
+    private byte[] image;
 
-    public BlogBasicDTO(Long id, String name, String content, String author, String date, String category, String title) {
+    public BlogBasicDTO(Long id, String name, String content, String author, String date, String category, String title, byte[] image) {
         this.id = id;
         this.name = name;
         this.content = content;
@@ -18,6 +19,7 @@ public class BlogBasicDTO {
         this.date = date;
         this.category = category;
         this.title = title;
+        this.image = image;
 
     }
 
@@ -68,4 +70,8 @@ public class BlogBasicDTO {
     public String getTitle() {  return title;   }
 
     public void setTitle(String title) {    this.title = title; }
+
+    public byte[] getImage() {  return image;   }
+
+    public void setImage(byte[] image) {    this.image = image; }
 }

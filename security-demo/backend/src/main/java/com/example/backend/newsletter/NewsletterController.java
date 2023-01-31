@@ -17,7 +17,7 @@ public class NewsletterController {
     public List<Newsletter> getAllNewsletter(){
         return newsletterService.getAllNewsletter();
     }
-    @PostMapping(path = "/noAuth/addNewsletter")
+    @PostMapping(path = "/NoAuth/addNewsletter")
     public Newsletter addNewNewsletter (@RequestBody Newsletter newsletter) {
         return newsletterService.addNewsletter(newsletter);}
 }

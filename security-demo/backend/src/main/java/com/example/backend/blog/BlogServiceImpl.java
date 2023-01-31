@@ -23,13 +23,11 @@ public class BlogServiceImpl implements BlogService{
 
     private final BlogRepository blogRepository;
     private final UserRepository userRepository;
-    private final ImageRepository imageRepository;
 
     @Autowired
-    public BlogServiceImpl(BlogRepository blogRepository, UserRepository userRepository, ImageRepository imageRepository) {
+    public BlogServiceImpl(BlogRepository blogRepository, UserRepository userRepository) {
         this.blogRepository = blogRepository;
         this.userRepository = userRepository;
-        this.imageRepository = imageRepository;
     }
 
     @Override
@@ -87,10 +85,10 @@ public class BlogServiceImpl implements BlogService{
                     creationOfBlogDTO.getDate(),
                     user.get(),
                     creationOfBlogDTO.getTitle(),
-                    creationOfBlogDTO.getCategory()
+                    creationOfBlogDTO.getCategory(),
+                    creationOfBlogDTO.getImage()
             );
             user.get().getListOfBlog().add(blog);
-
             blogRepository.save(blog);
             userRepository.save(user.get());
 
@@ -188,7 +186,8 @@ public class BlogServiceImpl implements BlogService{
                 blog.getAuthor(),
                 blog.getDate(),
                 blog.getCategory(),
-                blog.getTitle()
+                blog.getTitle(),
+                blog.getImage()
         );
     }
 }

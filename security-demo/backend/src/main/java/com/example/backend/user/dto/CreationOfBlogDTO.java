@@ -8,14 +8,16 @@ public class CreationOfBlogDTO {
     private String category;
     private String date;
     private String title;
+    private byte[] image;
 
-    public CreationOfBlogDTO( String name, String content, String author, String category, String date, String title) {
+    public CreationOfBlogDTO( String name, String content, String author, String category, String date, String title, byte[] image) {
         this.name = name;
         this.content = content;
         this.author = author;
         this.category = category;
         this.date = date;
         this.title = title;
+        this.image = image;
 
     }
 
@@ -62,5 +64,9 @@ public class CreationOfBlogDTO {
     public String getTitle() {return title;}
 
     public void setTitle(String title) {this.title = title;}
+
+    public byte[] getImage() {return image;}
+
+    public void setImage(byte[] image) {this.image = image;}
 
 }

@@ -28,6 +28,10 @@ public class Blog {
     @Column
     private String name;
 
+    @Column
+    @Lob
+    private byte[] image;
+
 
     private String category;
 
@@ -38,7 +42,7 @@ public class Blog {
     @OneToMany(mappedBy = "blogid")
     private Set<Likes> listOfLikes;
 
-    public Blog( String name, String content, String author, String date, User user, String title, String category) {
+    public Blog( String name, String content, String author, String date, User user, String title, String category, byte[] image) {
         this.title = title;
         this.name = name;
         this.content = content;
@@ -46,6 +50,7 @@ public class Blog {
         this.date = date;
         this.user = user;
         this.category = category;
+        this.image = image;
     }
 
     public Blog() {
@@ -112,4 +117,11 @@ public class Blog {
         this.user = user;
     }
 
+    public byte[] getImage() {
+        return image;
     }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+}
