@@ -12,6 +12,8 @@ public interface UserService {
 
     void editUser(EditUserDTO userFromFE, String email);
 
+    void deleteUser(Long id, String email);
+
     List<User> getAllUser();
 
     List<User> getAllAdmin();

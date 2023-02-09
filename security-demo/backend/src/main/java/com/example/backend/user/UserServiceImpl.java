@@ -1,6 +1,7 @@
 package com.example.backend.user;
 
 import com.example.backend.blog.Blog;
+import com.example.backend.blog.exception.BlogWasNotFound;
 import com.example.backend.user.dto.EditUserDTO;
 import com.example.backend.user.exception.UserWasNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,26 @@ public class UserServiceImpl implements UserService {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         return repository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(Long id, String email) {
+        Optional<User> user = repository.findByEmail(email);
+        Optional<User> admin = repository.findById(1L);
+
+        if(user.isPresent()){
+            for (Blog blog:user.get().getListOfBlog()
+                 ) {
+                blog.setUser(admin.get());
+                admin.get().getListOfBlog().add(blog);
+            }
+            user.get().setListOfBlog(null);
+
+            repository.delete(user.get());
+        }else{
+            throw new UserWasNotFound("User was not found!");
+        }
     }
 
     @Override

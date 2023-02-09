@@ -66,6 +66,13 @@ public class UserController {
         userService.editUser(editUserDTO, userDetails.getUsername());
     }
 
+    @DeleteMapping("/NoAuth/deleteUser/{id}")
+    public void deleteUser(@PathVariable Long id, Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        userService.deleteUser(id, userDetails.getUsername());
+    }
+
     @GetMapping(path ="/Auth/GetAllUser")
     public List<User> getAllUser(){
         return userService.getAllUser();
