@@ -1,32 +1,33 @@
 package com.example.backend.newsletter;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Service;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Newsletter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(
             name="id",
-            updatable = false
-    )
+            updatable = false)
     private long id;
 
-    @Column(
-            name = "email",
+    @Column(name = "email",
             nullable = false,
             unique = true,
-            columnDefinition = "TEXT"
-    )
+            columnDefinition = "TEXT")
     public String email;
 
-    public Newsletter(long id, String email) {
-        this.id = id;
+    public Newsletter(String email) {
         this.email = email;
     }
-    private long getId(){return id; }
-
-    public String getEmail(){return email; }
 }
