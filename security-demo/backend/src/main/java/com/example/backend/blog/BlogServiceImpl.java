@@ -12,8 +12,10 @@ import com.example.backend.user.exception.UserWasNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -74,7 +76,8 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public void addNewBlog(CreationOfBlogDTO creationOfBlogDTO, String email) {
+    public void addNewBlog(CreationOfBlogDTO creationOfBlogDTO, String email, MultipartFile image)
+            throws IOException {
         Optional<User> user = userRepository.findByEmail(email);
 
         if(user.isPresent()){
@@ -86,7 +89,7 @@ public class BlogServiceImpl implements BlogService{
                     user.get(),
                     creationOfBlogDTO.getTitle(),
                     creationOfBlogDTO.getCategory(),
-                    creationOfBlogDTO.getImage()
+                    image.getBytes()
             );
             user.get().getListOfBlog().add(blog);
             blogRepository.save(blog);

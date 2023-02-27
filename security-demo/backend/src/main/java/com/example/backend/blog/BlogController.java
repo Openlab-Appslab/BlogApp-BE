@@ -2,15 +2,19 @@ package com.example.backend.blog;
 
 import com.example.backend.user.dto.BlogBasicDTO;
 import com.example.backend.user.dto.CreationOfBlogDTO;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.EntityNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -40,10 +44,11 @@ public class BlogController {
     }
 
     @PostMapping(path = "/Auth/addPost")
-    public void testPost(Authentication authentication, @RequestBody CreationOfBlogDTO creationOfBlogDTO){
+    public void testPost(Authentication authentication, @RequestParam("image") MultipartFile image,
+                         @RequestParam("data") String data) throws IOException {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-        blogService.addNewBlog(creationOfBlogDTO, userDetails.getUsername());
+        blogService.addNewBlog(new ObjectMapper().readValue(data, CreationOfBlogDTO.class), userDetails.getUsername(), image);
     }
 
     @DeleteMapping("/NoAuth/deleteBlog/{id}")
