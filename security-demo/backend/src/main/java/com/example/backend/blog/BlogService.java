@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface BlogService {
+
     BlogBasicDTO getBlog(Long id);
 
     List<BlogBasicDTO> getAllBlogs();
@@ -29,4 +30,6 @@ public interface BlogService {
     List<BlogBasicDTO> getAllPrirodaBlogs();
 
     List<BlogBasicDTO> getAllSvetadielBlogs();
+
+    List<BlogBasicDTO> getBlogByCategory(String category);
 }

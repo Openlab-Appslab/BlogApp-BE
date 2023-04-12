@@ -88,4 +88,8 @@ public class BlogController {
         return blogService.getAllSvetadielBlogs();
     }
 
+    @GetMapping("noAuth/getBlogByCategory/{category}")
+    public List<BlogBasicDTO> getBlogByCategory(@PathVariable String category){
+        return blogService.getBlogByCategory(category);
+    }
 }

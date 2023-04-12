@@ -12,6 +12,8 @@ import com.example.backend.user.exception.UserWasNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
@@ -180,6 +182,19 @@ public class BlogServiceImpl implements BlogService{
         }
         return listOfSvetadielBlog;
     }
+    @Autowired
+    private BlogService blogService;
+
+    @Override
+    public List<BlogBasicDTO> getBlogByCategory(String category) {
+        List<BlogBasicDTO> listOfBlogByCategory = new ArrayList<>();
+
+        for (Blog blog: blogRepository.findAll()){
+            if(blog.getCategory().equalsIgnoreCase(category))
+                listOfBlogByCategory.add(convertBlogToDTO(blog));
+        }
+        return listOfBlogByCategory;
+    }
 
     public BlogBasicDTO convertBlogToDTO(Blog blog){
         return new BlogBasicDTO(
@@ -193,4 +208,7 @@ public class BlogServiceImpl implements BlogService{
                 blog.getImage()
         );
     }
+
+
+
 }
