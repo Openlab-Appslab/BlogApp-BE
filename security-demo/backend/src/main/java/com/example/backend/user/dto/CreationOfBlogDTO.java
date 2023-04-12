@@ -6,7 +6,7 @@ public class CreationOfBlogDTO {
     private String content;
     private String author;
     private String category;
-    private String date;
+    //private String date;
     private String title;
 
     public String getName() {
@@ -41,13 +41,13 @@ public class CreationOfBlogDTO {
         this.category = category;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
+//    public String getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(String date) {
+//        this.date = date;
+//    }
 
     public String getTitle() {return title;}
 

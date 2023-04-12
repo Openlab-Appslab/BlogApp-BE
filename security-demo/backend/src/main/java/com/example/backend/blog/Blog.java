@@ -2,9 +2,11 @@ package com.example.backend.blog;
 
 import com.example.backend.likes.Likes;
 import com.example.backend.user.User;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -22,8 +24,9 @@ public class Blog {
     @Column(length = 100)
     private String author;
 
-    @Column(length = 50)
-    private String date;
+    @CreatedDate
+    @Column
+    private Date date;
 
     @Column
     private String name;
@@ -42,12 +45,12 @@ public class Blog {
     @OneToMany(mappedBy = "blogid")
     private Set<Likes> listOfLikes;
 
-    public Blog( String name, String content, String author, String date, User user, String title, String category, byte[] image) {
+    public Blog( String name, String content, String author, User user, String title, String category, byte[] image) {
         this.title = title;
         this.name = name;
         this.content = content;
         this.author = author;
-        this.date = date;
+        this.date = new Date();
         this.user = user;
         this.category = category;
         this.image = image;
@@ -89,13 +92,13 @@ public class Blog {
         this.author = author;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+//    public void setDate(String date) {
+//        this.date = date;
+//    }
 
     public String getCategory() {
         return category;
