@@ -14,7 +14,7 @@ public interface BlogService {
 @Autowired
 final BlogRepository blogRepository = null;
 
-    public default List<Blog> getLastThreeObjects(){
+    public default List<Blog> getLastThreeBlogs(){
         PageRequest pageRequest = PageRequest.of(0,3, Sort.by(Sort.Direction.DESC, "createdAt"));
                 return blogRepository.findAll(pageRequest).getContent();
     }

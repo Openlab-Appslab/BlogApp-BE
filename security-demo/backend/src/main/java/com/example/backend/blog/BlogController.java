@@ -59,6 +59,9 @@ public class BlogController {
         blogService.deleteBlog(id, userDetails.getUsername());
     }
 
+    @GetMapping("noAuth/getLastThreeBlogs")
+    public List<Blog> getLastThreeBlogs() { return blogService.getLastThreeBlogs(); }
+
     @GetMapping("/noAuth/getTechBlogs")
     public List<BlogBasicDTO> getTechBlogs() { return blogService.getAllTechBlogs(); }
 
