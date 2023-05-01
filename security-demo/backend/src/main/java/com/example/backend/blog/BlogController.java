@@ -36,6 +36,7 @@ public class BlogController {
         return blogService.getBlog(id);
     }
 
+
     @GetMapping(path = "/noAuth/getAllBlogs")
     public List<BlogBasicDTO> getAllBlogs(){
 //        UserDetails user = (UserDetails) authentication.getPrincipal();
@@ -59,9 +60,7 @@ public class BlogController {
     }
 
     @GetMapping("/noAuth/getTechBlogs")
-    public List<BlogBasicDTO> getTechBlogs(){
-        return blogService.getAllTechBlogs();
-    }
+    public List<BlogBasicDTO> getTechBlogs() { return blogService.getAllTechBlogs(); }
 
     @GetMapping("/noAuth/getZdravieBlogs")
     public List<BlogBasicDTO> getZdravieBlogs(){
