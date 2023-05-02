@@ -10,6 +10,8 @@ import com.example.backend.user.dto.BlogBasicDTO;
 import com.example.backend.user.dto.CreationOfBlogDTO;
 import com.example.backend.user.exception.UserWasNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +34,12 @@ public class BlogServiceImpl implements BlogService{
     public BlogServiceImpl(BlogRepository blogRepository, UserRepository userRepository) {
         this.blogRepository = blogRepository;
         this.userRepository = userRepository;
+    }
+
+    @Override
+    public List<Blog> getLastThreeBlogs(){
+        PageRequest pageRequest = PageRequest.of(0,3, Sort.by(Sort.Direction.DESC, "createdAt"));
+        return blogRepository.findAll(pageRequest).getContent();
     }
 
     @Override
